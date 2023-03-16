@@ -6,6 +6,11 @@
     width: percentage((1 / 24 * @num));
     flex: 0 0 percentage((1 / 24 * @num));
   }
+  &.@{prefix-name}-col-offset-@{num} {
+    // width: percentage((1 / 24 * @num));
+    margin-left: percentage((1 / 24 * @num));
+    // flex: 0 0 percentage((1 / 24 * @num));
+  }
 }
 
 .generate-col-list(@count) when (@count > 0) {

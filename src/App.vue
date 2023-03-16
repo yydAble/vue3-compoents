@@ -37,7 +37,9 @@
       <Col class="gird gird-dark" :span="3">col-3</Col>
     </Row>
     <Row>
-      <Col class="gird" :span="2">col-2</Col>
+      <Col class="gird" :span="2" :offset="22">col-2</Col>
+      <Col class="gird gird-dark" :span="2">col-2</Col>
+      <!-- <Col class="gird" :span="2">col-2</Col>
       <Col class="gird gird-dark" :span="2">col-2</Col>
       <Col class="gird" :span="2">col-2</Col>
       <Col class="gird gird-dark" :span="2">col-2</Col>
@@ -46,9 +48,7 @@
       <Col class="gird" :span="2">col-2</Col>
       <Col class="gird gird-dark" :span="2">col-2</Col>
       <Col class="gird" :span="2">col-2</Col>
-      <Col class="gird gird-dark" :span="2">col-2</Col>
-      <Col class="gird" :span="2">col-2</Col>
-      <Col class="gird gird-dark" :span="2">col-2</Col>
+      <Col class="gird gird-dark" :span="2">col-2</Col> -->
     </Row>
   </div>
 </template>

@@ -21,6 +21,7 @@ function createDialog(params: {
       });
     }
   });
+  console.log(app)
   app.mount(dom);
 
   return {

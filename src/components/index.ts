@@ -4,4 +4,9 @@ import Message from "./message";
 import Dialog from "./dialog";
 import Row from './row'
 import Col from './col'
-export {Button,Box,Message,Dialog,Row,Col}
+import Layout from './layout';
+import Header from './header';
+import Content from './content';
+import Footer from './footer';
+import Sider from './sider';
+export {Button,Box,Message,Dialog,Row,Col,Layout,Header,Footer,Sider,Content}

@@ -26,17 +26,16 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-import { Form } from './components';
-import { FormInstance } from './components';
+import { Form } from '../src';
+import { FormInstance } from '../src';
 
-console.log(Form)
 const { FormItem } = Form;
 const formRef = ref<FormInstance>();
 const model = reactive<{ data1: string; data2: string }>({
-  data1: 'Data 001',
-  data2: 'Data 002'
-  // data1: '',
-  // data2: ''
+  // data1: 'Data 001',
+  // data2: 'Data 002'
+  data1: '',
+  data2: ''
 });
 
 const onReset = () => {
@@ -81,7 +80,7 @@ body {
   width: 100%;
 }
 .example {
-  width: 800px;
+  width: 400px;
   margin: 100px auto;
   box-sizing: border-box;
   background: #f0f0f0;

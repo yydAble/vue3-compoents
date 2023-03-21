@@ -1,67 +1,90 @@
 <template>
   <div class="example">
-    <Form
-      ref="formRef"
+    <DynamicForm
       :model="model"
+      :fieldList="fieldList"
       @finish="onFinish"
       @finishFail="onFinishFail"
     >
-      <FormItem label="数据1" name="data1" :rule="rule1">
-        <input v-model="model.data1" />
-      </FormItem>
-      <FormItem label="数据2" name="data2" :rule="rule2">
-        <input v-model="model.data2" />
-      </FormItem>
-      <FormItem>
-        <button html-type="submit">submit</button>
-        <button @click="onReset">reset</button>
-      </FormItem>
-    </Form>
-    <div>
-      <div>data1: {{ model.data1 }}</div>
-      <div>data2: {{ model.data2 }}</div>
-    </div>
+      <Button type="primary">提交信息</Button>
+    </DynamicForm>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { Form } from './components';
-import { FormInstance } from './components';
+import { Button, DynamicForm } from './components';
+import type { DynamicFormField } from './components';
 
-console.log(Form)
-const { FormItem } = Form;
-const formRef = ref<FormInstance>();
-const model = reactive<{ data1: string; data2: string }>({
-  data1: 'Data 001',
-  data2: 'Data 002'
-  // data1: '',
-  // data2: ''
-});
-
-const onReset = () => {
-  formRef.value?.resetFields();
+const model = {
+  username: 'Hello',
+  phone: '123456',
+  address: '',
+  service: ''
 };
 
-const rule1 = {
-  validator: (val: string) => {
-    const hasError = /^[0-9]{1,}$/gi.test(`${val || ''}`) !== true;
-    return {
-      hasError,
-      message: hasError ? '仅支持0-9的数字' : ''
-    };
+const fieldList: DynamicFormField[] = [
+  {
+    label: '用户名称',
+    name: 'username',
+    fieldType: 'Input',
+    rule: {
+      validator: (val: unknown) => {
+        const hasError = /^[a-z]{1,}$/gi.test(`${val || ''}`) !== true;
+        return {
+          hasError,
+          message: hasError ? '仅支持a-z的大小写字母' : ''
+        };
+      }
+    }
+  },
+  {
+    label: '手机号码',
+    name: 'phone',
+    fieldType: 'Input',
+    rule: {
+      validator: (val: unknown) => {
+        const hasError = /^[0-9]{1,}$/gi.test(`${val || ''}`) !== true;
+        return {
+          hasError,
+          message: hasError ? '仅支持0-9的数字' : ''
+        };
+      }
+    }
+  },
+  {
+    label: '快递地址',
+    name: 'address',
+    fieldType: 'Input',
+    rule: {
+      validator: (val: unknown) => {
+        const hasError = `${val}`?.length === 0;
+        return {
+          hasError,
+          message: hasError ? '地址不能为空' : ''
+        };
+      }
+    }
+  },
+  {
+    label: '会员服务',
+    name: 'service',
+    fieldType: 'RadioList',
+    options: [
+      { name: '免运费', value: 'service001' },
+      { name: '9折优惠', value: 'service002' },
+      { name: '满80减10', value: 'service003' }
+    ],
+    rule: {
+      validator: (val: unknown) => {
+        const hasError = `${val}`?.length === 0;
+        return {
+          hasError,
+          message: hasError ? '优惠不能为空' : ''
+        };
+      }
+    }
   }
-};
-
-const rule2 = {
-  validator: (val: string) => {
-    const hasError = /^[a-z]{1,}$/gi.test(`${val || ''}`) !== true;
-    return {
-      hasError,
-      message: hasError ? '仅支持a-z的大小写字母' : ''
-    };
-  }
-};
+];
 
 const onFinish = (e: any) => {
   // eslint-disable-next-line no-console
@@ -81,9 +104,18 @@ body {
   width: 100%;
 }
 .example {
-  width: 800px;
-  margin: 100px auto;
+  width: 400px;
+  padding: 16px;
+  margin: 20px auto;
   box-sizing: border-box;
-  background: #f0f0f0;
+  border-radius: 4px;
+  border: 1px solid #999999;
+  font-size: 14px;
+}
+
+.btn {
+  height: 32px;
+  padding: 0 20px;
+  min-width: 100px;
 }
 </style>
